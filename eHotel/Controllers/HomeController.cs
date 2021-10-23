@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eHotel.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,11 @@ namespace eHotel.Controllers
 {
     public class HomeController : Controller
     {
+        private SystemDbContext db = new SystemDbContext();
+
         public ActionResult Index()
         {
+            db.Types.Add(new Models.Type() { Name = "Đơn" });
             return View();
         }
 
