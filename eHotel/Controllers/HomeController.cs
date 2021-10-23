@@ -13,7 +13,7 @@ namespace eHotel.Controllers
 
         public ActionResult Index()
         {
-            db.Types.Add(new Models.Type() { Name = "Đơn" });
+           
             return View();
         }
 
