@@ -17,7 +17,7 @@ namespace eHotel.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { Controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

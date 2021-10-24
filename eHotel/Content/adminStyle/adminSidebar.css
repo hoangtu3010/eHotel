@@ -1,0 +1,68 @@
+﻿[class*=sidebar-dark-] {
+    background-color: #3498db;
+}
+
+.sidebar a {
+    color: #fff !important;
+}
+
+[class*=sidebar-dark-] .nav-sidebar > .nav-item.menu-open > .nav-link, [class*=sidebar-dark-] .nav-sidebar > .nav-item:hover > .nav-link, [class*=sidebar-dark-] .nav-sidebar > .nav-item > .nav-link:focus {
+    background-color: #fff;
+    color: #3498db !important;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active-sidebar, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active-sidebar {
+    background-color: #fff;
+    color: #3498db !important;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+[class*=sidebar-dark] .user-panel {
+    border-bottom: 0;
+}
+
+[class*=sidebar-dark] .brand-link {
+    border-bottom: 1px solid #ddd;
+}
+
+.side-menu .nav-item .nav-icon {
+    margin: 0 15px 0 0;
+    font-size: 1.4rem;
+}
+
+.side-menu .nav-item .nav-icon::before {
+    width: 1.6rem;
+}
+
+.side-menu ul li:hover a::before,
+.side-menu .nav-link.active-sidebar::before {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: -40px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 15px #fff;
+}
+
+.side-menu ul li:hover a::after,
+.side-menu .nav-link.active-sidebar::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    bottom: -40px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 15px #fff;
+}

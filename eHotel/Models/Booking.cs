@@ -17,6 +17,8 @@ namespace eHotel.Models
         [Required(ErrorMessage = "Vui lòng nhập ngày trả phòng!")]
         public DateTime CheckOut { get; set; }
 
+        public decimal Total { get; set; }
+
         public int UserId { get; set; }
 
         public int RoomId { get; set; }

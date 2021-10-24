@@ -36,8 +36,8 @@ namespace eHotel.Data
             var Users = new List<User>
             {
             new User{FullName="Carson",Email="user1@gmail.com",Password=GetMD5("123456")},
-            new User{FullName="Carson",Email="user2@gmail.com",Password=GetMD5("123456")},
-            new User{FullName="Carson",Email="user3@gmail.com",Password=GetMD5("123456")},
+            new User{FullName="John",Email="user2@gmail.com",Password=GetMD5("123456")},
+            new User{FullName="Smith",Email="user3@gmail.com",Password=GetMD5("123456")},
             };
 
             Users.ForEach(s => context.Users.Add(s));
@@ -51,11 +51,22 @@ namespace eHotel.Data
             };
             types.ForEach(s => context.Types.Add(s));
             context.SaveChanges();
+
+            var statuses = new List<Status>
+            {
+            new Models.Status{Content="Rảnh"},
+            new Models.Status{Content="Đang sử dụng"},
+            new Models.Status{Content="Đã đặt trước"},
+            };
+            statuses.ForEach(s => context.Statuses.Add(s));
+            context.SaveChanges();
+
+
             var rooms = new List<Room>
             {
-            new Room{RoomNumber=101, Image = null, Description= "Phòng sạch sẽ!",Price= 200000, Status = "Using", TypeId = 1 },
-            new Room{RoomNumber=102, Image = null, Description= "Phòng sạch sẽ!",Price= 250000, Status = "Using", TypeId = 2 },
-            new Room{RoomNumber=103, Image = null, Description= "Phòng sạch sẽ!",Price= 300000, Status = "Using", TypeId = 3 },
+            new Room{RoomNumber=101, Image = null, Description= "Phòng sạch sẽ!",Price= 200000, StatusId = 1, TypeId = 1 },
+            new Room{RoomNumber=102, Image = null, Description= "Phòng sạch sẽ!",Price= 250000, StatusId = 2, TypeId = 2 },
+            new Room{RoomNumber=103, Image = null, Description= "Phòng sạch sẽ!",Price= 300000, StatusId = 3, TypeId = 3 },
            
             };
             rooms.ForEach(s => context.Rooms.Add(s));

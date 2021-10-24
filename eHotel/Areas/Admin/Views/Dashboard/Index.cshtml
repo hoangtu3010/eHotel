@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    @* Card box *@
+    <div class="card-box">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="cart-item">
+                    <div>
+                        <div class="numbers">12</div>
+                        <div class="card-name">Rooms</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="cart-item">
+                    <div>
+                        <div class="numbers">3</div>
+                        <div class="card-name">Users</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="ion ion-ios-people"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="cart-item">
+                    <div>
+                        <div class="numbers">123</div>
+                        <div class="card-name">Bookings</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="ion ion-ios-bookmarks"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="cart-item">
+                    <div>
+                        <div class="numbers">$7,000</div>
+                        <div class="card-name">Total</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="ion ion-cash"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* End card box *@
+
+    <div class="row">
+        @*Rooms*@
+        <div class="col-lg-7">
+            <div class="data-list">
+                <div class="cart-header">
+                    <h2>Rooms</h2>
+                    <a href="#" class="btn-view">View All</a>
+                </div>
+                <table class="table table-light">
+                    <thead>
+                        <tr>
+                            <th width="10%" class="text-center">Room</th>
+                            <th>Description</th>
+                            <th class="text-center">Price</th>
+                            <th width="15%" class="text-center">Type</th>
+                            <th width="20%" class="text-right">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">101</td>
+                            <td>Phòng đơn phù hợp với người đi 1 mình</td>
+                            <td class="text-center">$100</td>
+                            <td class="text-center type"><span class="type-content">Đơn</span></td>
+                            <td class="text-right status"> <span class="available">Rảnh</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">102</td>
+                            <td>Phòng đơn phù hợp với người đi 2 người</td>
+                            <td class="text-center">$200</td>
+                            <td class="text-center type"><span class="type-content">Đôi</span></td>
+                            <td class="text-right status"><span class="unavailable">Không rảnh</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">103</td>
+                            <td>Phòng đơn phù hợp với gia đình 2 người lớn và 2 trẻ em</td>
+                            <td class="text-center">$400</td>
+                            <td class="text-center type"><span class="type-content">Gia đình</span></td>
+                            <td class="text-right status"><span class="reserved">Đang chờ</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @*End Rooms*@
+
+        @*User*@
+        <div class="col-lg-5">
+            <div class="data-list recent-user">
+                <div class="cart-header">
+                    <h2>Recent Users</h2>
+                </div>
+                <table class="table table-light">
+                    <tr>
+                        <td width="60px"><div class="img-user"><img src="~/Content/adminLTE/dist/img/user3-128x128.jpg" alt="avt" /></div></td>
+                        <td><h6>Lena <br /> <span>Italy</span></h6></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="img-user"><img src="~/Content/adminLTE/dist/img/user4-128x128.jpg" alt="avt" /></div></td>
+                        <td><h6>Walker <br /> <span>Americar</span></h6></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="img-user"><img src="~/Content/adminLTE/dist/img/user5-128x128.jpg" alt="avt" /></div></td>
+                        <td><h6>David <br /> <span>China</span></h6></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="img-user"><img src="~/Content/adminLTE/dist/img/user6-128x128.jpg" alt="avt" /></div></td>
+                        <td><h6>John <br /> <span>VietNam</span></h6></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        @*End User*@
+    </div>
+
+</div>
