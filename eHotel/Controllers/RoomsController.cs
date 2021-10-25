@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,6 +48,21 @@ namespace eHotel.Controllers
                 return HttpNotFound();
             }
             return View(room);
+        }
+        public ActionResult Booking(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+            MultiRoomBooking mymodel = new MultiRoomBooking();
+            mymodel.room = room;
+            return View(mymodel);
         }
 
         protected override void Dispose(bool disposing)

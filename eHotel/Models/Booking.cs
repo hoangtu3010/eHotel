@@ -20,7 +20,9 @@ namespace eHotel.Models
         public decimal Total { get; set; }
 
         public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         public int RoomId { get; set; }
+        public virtual Room Room { get; set; }
     }
 }
