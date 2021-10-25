@@ -16,6 +16,8 @@ namespace eHotel.Models
         
         public DbSet<Type> Types { get; set; } 
         
+        public DbSet<Status> Statuses { get; set; } 
+
         public DbSet<Room> Rooms { get; set; } 
         
         public DbSet<Booking> Bookings { get; set; } 

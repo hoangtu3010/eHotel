@@ -37,6 +37,13 @@ namespace eHotel
                       "~/Content/adminLTE/plugins/daterangepicker/daterangepicker.css",
                       "~/Content/adminLTE/plugins/summernote/summernote-bs4.min.css"));
 
+            // add css admin
+            bundles.Add(new StyleBundle("~/adminStyle/css").Include(
+                "~/Content/adminStyle/adminSidebar.css",
+                "~/Content/adminStyle/adminDashboard.css",
+                "~/Content/adminStyle/admin-table.css"
+                ));
+
             // add js theme
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                        "~/Content/adminLTE/plugins/jquery/jquery.min.js",

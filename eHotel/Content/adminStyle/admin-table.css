@@ -1,0 +1,44 @@
+﻿.table-style {
+    padding: 0;
+}
+
+    .table-style table thead tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-style table tbody tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-style > .cart-header {
+        padding: 20px;
+    }
+
+    .table-style .button-action-add {
+        border: 1px solid #3498db;
+        border-radius: 50%;
+        padding: 9px 14px;
+        transition: .3s;
+        color: #3498db;
+    }
+
+        .table-style .button-action-add:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+    .table-style .button-action {
+        padding: 0 5px;
+    }
+
+        .table-style .button-action.btn-edit {
+            color: #17a2b8b8;
+        }
+
+        .table-style .button-action.btn-details {
+            color: #0094ffd1;
+        }
+
+        .table-style .button-action.btn-delete {
+            color: #ff0000ad;
+        }

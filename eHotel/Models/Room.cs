@@ -22,7 +22,9 @@ namespace eHotel.Models
         [Required(ErrorMessage = "Vui lòng điền giá!")]
         public decimal Price { get; set; }
 
-        public string Status { get; set; }
+        public int StatusId { get; set; }
+
+        public virtual Status Status { get; set; }
 
         public int TypeId { get; set; }
 

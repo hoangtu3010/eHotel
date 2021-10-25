@@ -61,9 +61,6 @@
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Data.SqlClient, Version=3.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.SqlClient.3.0.1\lib\net461\Microsoft.Data.SqlClient.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Identity.Client, Version=4.22.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.4.22.0\lib\net461\Microsoft.Identity.Client.dll</HintPath>
     </Reference>
@@ -214,8 +211,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoomsAdminController.cs" />
     <Compile Include="Areas\User\Controllers\AuthUserController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -230,6 +228,7 @@
     <Compile Include="Models\MultiRoomBooking.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\SeenRoom.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\SystemDbContext.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Models\User.cs" />
@@ -2119,6 +2118,9 @@
     <Content Include="Content\adminLTE\plugins\uplot\uPlot.iife.js" />
     <Content Include="Content\adminLTE\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\adminLTE\plugins\uplot\uPlot.min.css" />
+    <Content Include="Content\adminStyle\admin-table.css" />
+    <Content Include="Content\adminStyle\AdminDashboard.css" />
+    <Content Include="Content\adminStyle\adminSidebar.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2213,16 +2215,17 @@
     <Content Include="Areas\Admin\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Sidebar.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Admins\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Admins\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Admins\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Admins\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Admins\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AuthAdmin\Register.cshtml" />
     <Content Include="Areas\User\Views\AuthUser\Register.cshtml" />
     <Content Include="Areas\User\Views\Shared\_UserLayout.cshtml" />
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
     <Content Include="Areas\User\Views\AuthUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomsAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomsAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomsAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
