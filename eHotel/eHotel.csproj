@@ -227,6 +227,7 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\MultiRoomBooking.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\SeenRoom.cs" />
     <Compile Include="Models\SystemDbContext.cs" />
@@ -2250,6 +2251,7 @@
     <Content Include="Views\Rooms\Details.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Rooms\Seen.cshtml" />
+    <Content Include="Views\Rooms\Booking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

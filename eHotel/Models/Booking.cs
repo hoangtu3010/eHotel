@@ -18,7 +18,9 @@ namespace eHotel.Models
         public DateTime CheckOut { get; set; }
 
         public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         public int RoomId { get; set; }
+        public virtual Room Room { get; set; }
     }
 }
