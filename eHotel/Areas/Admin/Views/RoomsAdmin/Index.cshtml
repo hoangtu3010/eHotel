@@ -18,6 +18,9 @@
                     Room
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th class="text-center">
@@ -37,12 +40,13 @@
             {
                 <tr>
                     <td class="text-center">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Image)</td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td class="text-center type"><span class="type-content">@Html.DisplayFor(modelItem => item.Type.Name)</span></td>
-                    <td class="text-right status"> <span class="available">@Html.DisplayFor(modelItem => item.Status.Content)</span></td>
+                    <td class="text-right status"> <span class="available-@item.Status.Id">@Html.DisplayFor(modelItem => item.Status.Content)</span></td>
                     <td class="text-center">
                         <a href="@Url.Action("Edit", new { id = item.Id })" class="button-action btn-edit">
                             <i class="fas fa-pen"></i>

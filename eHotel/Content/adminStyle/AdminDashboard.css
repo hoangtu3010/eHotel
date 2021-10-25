@@ -96,7 +96,7 @@
         color: #fff;
     }
 
-.status > .available {
+.status > .available-1 {
     padding: 2px 4px;
     background-color: #20c997;
     color: #fff;
@@ -105,7 +105,7 @@
     white-space: nowrap;
 }
 
-.status > .unavailable {
+.status > .available-2 {
     padding: 2px 4px;
     background-color: #ff6a00;
     color: #fff;
@@ -113,7 +113,7 @@
     white-space: nowrap;
 }
 
-.status > .reserved {
+.status > .available-3 {
     padding: 2px 4px;
     background-color: #ffd800;
     color: #fff;
