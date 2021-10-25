@@ -41,7 +41,8 @@ namespace eHotel
             bundles.Add(new StyleBundle("~/adminStyle/css").Include(
                 "~/Content/adminStyle/adminSidebar.css",
                 "~/Content/adminStyle/adminDashboard.css",
-                "~/Content/adminStyle/admin-table.css"
+                "~/Content/adminStyle/admin-table.css",
+                "~/Content/adminStyle/adminForms.css"
                 ));
 
             // add js theme

@@ -3,7 +3,8 @@
 
 @{
     ViewBag.Title = "Booking";
-
+    Model.booking = new eHotel.Models.Booking();
+    Model.booking.Room = Model.room;
 }
 <div class="col-md-6">
     <h2>Details</h2>
@@ -57,7 +58,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.room.Status)
+                @Html.DisplayFor(model => model.room.Status.Content)
             </dd>
 
         </dl>
@@ -65,9 +66,10 @@
 </div>
 <div class="col-md-6">
     <h2>Booking</h2>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Create","Rooms",FormMethod.Post))
     {
         @Html.AntiForgeryToken()
+
 
         <div class="form-horizontal">
             <h4>Booking</h4>
@@ -76,7 +78,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.booking.CheckIn, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.CheckIn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.booking.CheckIn, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
                     @Html.ValidationMessageFor(model => model.booking.CheckIn, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -84,27 +86,23 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.booking.CheckOut, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.CheckOut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.booking.CheckOut, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
                     @Html.ValidationMessageFor(model => model.booking.CheckOut, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.booking.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.booking.User, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.booking.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.booking.UserId, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
+            </div> 
             <div class="form-group">
-                @Html.LabelFor(model => model.booking.RoomId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.booking.Room, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.RoomId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.booking.RoomId, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.booking.Room.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
@@ -119,6 +117,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

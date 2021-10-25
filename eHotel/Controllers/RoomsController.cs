@@ -26,6 +26,12 @@ namespace eHotel.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Create(Booking booking)
+        {
+            booking.Total = booking.Room.Price;
+            return View(booking);
+        }
 
         // GET: Rooms/Details/5
         public ActionResult Details(int? id)
@@ -62,6 +68,7 @@ namespace eHotel.Controllers
             }
             MultiRoomBooking mymodel = new MultiRoomBooking();
             mymodel.room = room;
+
             return View(mymodel);
         }
 

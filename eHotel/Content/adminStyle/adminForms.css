@@ -1,0 +1,38 @@
+﻿.form-image {
+    position: relative;
+    transition: .3s;
+}
+
+    .form-image .ion-upload {
+        font-size: 5em;
+        position: absolute;
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        margin: -70px 0 0 -40px;
+        opacity: 0;
+        transition: .5s;
+    }
+
+    .form-image:hover {
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+        transform: scale(.98);
+    }
+
+        .form-image:hover .ion-upload {
+            opacity: 1;
+        }
+
+.input-post-image {
+    top: 0;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+}
+
+#img_tag {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}

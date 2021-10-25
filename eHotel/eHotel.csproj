@@ -2120,6 +2120,7 @@
     <Content Include="Content\adminLTE\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\adminStyle\admin-table.css" />
     <Content Include="Content\adminStyle\AdminDashboard.css" />
+    <Content Include="Content\adminStyle\adminForms.css" />
     <Content Include="Content\adminStyle\adminSidebar.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -2237,6 +2238,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\default.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2255,6 +2257,7 @@
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Rooms\Seen.cshtml" />
     <Content Include="Views\Rooms\Booking.cshtml" />
+    <Content Include="Views\Rooms\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2262,7 +2265,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
