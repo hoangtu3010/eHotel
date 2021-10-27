@@ -78,12 +78,12 @@ namespace eHotel.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult LogOff()
         {
             //WebSecurity.Logout();
             FormsAuthentication.SignOut();
-            return Redirect("Login");
+            return Redirect("Register");
         }
     }
 

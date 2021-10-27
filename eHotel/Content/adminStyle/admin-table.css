@@ -42,3 +42,21 @@
         .table-style .button-action.btn-delete {
             color: #ff0000ad;
         }
+
+.table-style .paginate{
+    position: absolute;
+    right: 25px;
+    bottom: 0;
+}
+
+.search-box{
+    border: 1px solid #ddd;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.search-button{
+    border: none;
+    padding: 2px;
+    border-radius: 5px;
+}
