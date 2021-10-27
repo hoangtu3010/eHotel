@@ -8,6 +8,7 @@ namespace eHotel.Areas.Admin.Controllers
 {
     public class DashboardController : Controller
     {
+        [Authorize]
         // GET: Admin/Dashboard
         public ActionResult Index()
         {

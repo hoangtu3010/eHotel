@@ -113,14 +113,6 @@
     white-space: nowrap;
 }
 
-.status > .available-3 {
-    padding: 2px 4px;
-    background-color: #ffd800;
-    color: #fff;
-    border-radius: 5px;
-    white-space: nowrap;
-}
-
 .type > .type-content {
     background-color: #0094ff96 !important;
     padding: 2px 4px;

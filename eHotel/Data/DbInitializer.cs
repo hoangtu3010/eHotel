@@ -66,7 +66,7 @@ namespace eHotel.Data
             {
             new Room{RoomNumber=101, Image = null, Description= "Phòng sạch sẽ!",Price= 200000, StatusId = 1, TypeId = 1 },
             new Room{RoomNumber=102, Image = null, Description= "Phòng sạch sẽ!",Price= 250000, StatusId = 2, TypeId = 2 },
-            new Room{RoomNumber=103, Image = null, Description= "Phòng sạch sẽ!",Price= 300000, StatusId = 3, TypeId = 3 },
+            new Room{RoomNumber=103, Image = null, Description= "Phòng sạch sẽ!",Price= 300000, StatusId = 1, TypeId = 3 },
            
             };
             rooms.ForEach(s => context.Rooms.Add(s));

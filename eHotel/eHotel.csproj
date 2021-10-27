@@ -2227,6 +2227,7 @@
     <Content Include="Areas\Admin\Views\RoomsAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RoomsAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AuthAdmin\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

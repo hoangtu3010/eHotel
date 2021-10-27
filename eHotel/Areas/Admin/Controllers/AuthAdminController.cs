@@ -33,7 +33,7 @@ namespace eHotel.Areas.Admin.Controllers
                     db.Admins.Add(admin);
                     db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(admin.Email, true);
-                    return Redirect("Home");
+                    return Redirect("~/Admin/Dashboard");
                 }
                 else
                 {
@@ -72,10 +72,18 @@ namespace eHotel.Areas.Admin.Controllers
                 if (data != null)
                 {
                     FormsAuthentication.SetAuthCookie(data.Email, true);
-                    return Redirect("Home");
+                    return Redirect("~/Admin/Dashboard");
                 }
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult LogOff()
+        {
+            //WebSecurity.Logout();
+            FormsAuthentication.SignOut();
+            return Redirect("Login");
         }
     }
 
