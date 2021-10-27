@@ -72,6 +72,7 @@ namespace eHotel.Controllers
             mymodel.booking = new Booking();
             mymodel.booking.CheckIn = DateTime.Now;
             mymodel.booking.CheckOut = DateTime.Now.AddDays(1);
+
             mymodel.booking.Room = room;
 
             return View(mymodel);

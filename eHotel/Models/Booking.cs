@@ -12,8 +12,10 @@ namespace eHotel.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập ngày đặt phòng!")]
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        
         public DateTime CheckIn { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập ngày trả phòng!")]
