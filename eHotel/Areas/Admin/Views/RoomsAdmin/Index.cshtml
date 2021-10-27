@@ -1,12 +1,22 @@
-﻿@model IEnumerable<eHotel.Models.Room>
+﻿@model PagedList.IPagedList<eHotel.Models.Room>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
 }
-
 <div class="data-list table-style">
     <div class="cart-header">
         <h2>Rooms</h2>
+        @using (Html.BeginForm("Index", "Rooms", FormMethod.Get))
+        {
+            <div style="position: relative">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "search-box" })
+                <input type="submit" value="Search" class="search-button" />
+            </div>
+        }
+        <a href="@Url.Action("LogOff", "AuthAdmin")">logoff</a>
         <a href="@Url.Action("Create")" class="button-action-add">
             <i class="fas fa-plus"></i>
         </a>
@@ -15,22 +25,22 @@
         <thead>
             <tr>
                 <th width="10%" class="text-center">
-                    Room
+                    @Html.ActionLink("Room", "Index", new { sortOrder = ViewBag.RoomSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Image)
+                    Image
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    Description
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Price)
+                    Price
                 </th>
                 <th width="15%" class="text-center">
-                    @Html.DisplayNameFor(model => model.Type)
+                    Type
                 </th>
                 <th width="20%" class="text-right">
-                    @Html.DisplayNameFor(model => model.Status)
+                    Status
                 </th>
                 <th width="20%" colspan="3" class="text-center">Action</th>
             </tr>
@@ -40,7 +50,9 @@
             {
                 <tr>
                     <td class="text-center">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
-                    <td class="text-center">@Html.DisplayFor(modelItem => item.Image)</td>
+                    <td class="text-center">
+                        <img src="@Url.Content(item.Image)" alt="image" width="50" height="50" />
+                    </td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Price)
@@ -62,4 +74,13 @@
             }
         </tbody>
     </table>
+    <div style="position: relative; height: 120px">
+        <div class="paginate">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    </div>
+    
 </div>

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using eHotel.Models;
+using PagedList;
 
 namespace eHotel.Areas.Admin.Controllers
 {
@@ -15,10 +17,42 @@ namespace eHotel.Areas.Admin.Controllers
         private SystemDbContext db = new SystemDbContext();
 
         // GET: Admin/Rooms
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.RoomSortParm = String.IsNullOrEmpty(sortOrder) ? "room_desc" : "";
+
             var rooms = db.Rooms.Include(r => r.Status).Include(r => r.Type);
-            return View(rooms.ToList());
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                rooms = rooms.Where(s => (s.RoomNumber).ToString().Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "room_desc":
+                    rooms = rooms.OrderByDescending(s => s.RoomNumber);
+                    break;
+                default:
+                    rooms = rooms.OrderBy(s => s.RoomNumber);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(rooms.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Rooms/Details/5
@@ -49,10 +83,27 @@ namespace eHotel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RoomNumber,Image,Description,Price,StatusId,TypeId")] Room room)
+        public ActionResult Create([Bind(Include = "Id,RoomNumber,Description,Price,StatusId,TypeId")] Room room, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                string roomImage = "~/Uploads/default.jpg";
+                try
+                {
+                    if(Image != null)
+                    {
+                        string fileName = Path.GetFileName(Image.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+                        Image.SaveAs(path);
+                        roomImage = "~/Uploads/" + fileName;
+                    }
+                }
+                catch { }
+                finally
+                {
+                    room.Image = roomImage;
+                }
+
                 db.Rooms.Add(room);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,10 +136,27 @@ namespace eHotel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RoomNumber,Image,Description,Price,StatusId,TypeId")] Room room)
+        public ActionResult Edit([Bind(Include = "Id,RoomNumber,Description,Price,StatusId,TypeId")] Room room, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                string roomImage = "~/Uploads/default.jpg";
+                try
+                {
+                    if (Image != null)
+                    {
+                        string fileName = Path.GetFileName(Image.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+                        Image.SaveAs(path);
+                        roomImage = "~/Uploads/" + fileName;
+                    }
+                }
+                catch { }
+                finally
+                {
+                    room.Image = roomImage;
+                }
+
                 db.Entry(room).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
