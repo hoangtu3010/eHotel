@@ -231,6 +231,7 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\MultipleAdmin.cs" />
     <Compile Include="Models\MultiRoomBooking.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\SeenRoom.cs" />

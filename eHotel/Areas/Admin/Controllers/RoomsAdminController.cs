@@ -19,10 +19,10 @@ namespace eHotel.Areas.Admin.Controllers
         // GET: Admin/Rooms
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            var rooms = db.Rooms.Include(r => r.Status).Include(r => r.Type);
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.RoomSortParm = String.IsNullOrEmpty(sortOrder) ? "room_desc" : "";
-
-            var rooms = db.Rooms.Include(r => r.Status).Include(r => r.Type);
 
             if (searchString != null)
             {
@@ -140,7 +140,8 @@ namespace eHotel.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string roomImage = "~/Uploads/default.jpg";
+                string roomImage = room.Image;
+
                 try
                 {
                     if (Image != null)

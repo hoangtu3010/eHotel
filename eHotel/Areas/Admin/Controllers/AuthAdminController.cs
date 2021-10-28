@@ -32,7 +32,7 @@ namespace eHotel.Areas.Admin.Controllers
                     admin.Password = GetMD5(admin.Password);
                     db.Admins.Add(admin);
                     db.SaveChanges();
-                    FormsAuthentication.SetAuthCookie(admin.Email, true);
+                    FormsAuthentication.SetAuthCookie(admin.UserName, true);
                     return Redirect("~/Admin/Dashboard");
                 }
                 else
@@ -71,7 +71,7 @@ namespace eHotel.Areas.Admin.Controllers
                 var data = db.Admins.Where(s => s.Email.Equals(login.Email) && s.Password.Equals(login.Password)).FirstOrDefault();
                 if (data != null)
                 {
-                    FormsAuthentication.SetAuthCookie(data.Email, true);
+                    FormsAuthentication.SetAuthCookie(data.UserName, true);
                     return Redirect("~/Admin/Dashboard");
                 }
             }
