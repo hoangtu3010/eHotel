@@ -6,13 +6,12 @@
 
 <div class="container-fluid">
     @* Card box *@
-    @User.Identity.Name
     <div class="card-box">
         <div class="row">
             <div class="col-lg-3 col-6">
                 <div class="cart-item">
                     <div>
-                        <div class="numbers">12</div>
+                        <div class="numbers">@Model.room.Count()</div>
                         <div class="card-name">Rooms</div>
                     </div>
                     <div class="icon-box">
@@ -23,7 +22,7 @@
             <div class="col-lg-3 col-6">
                 <div class="cart-item">
                     <div>
-                        <div class="numbers">3</div>
+                        <div class="numbers">@Model.user.Count()</div>
                         <div class="card-name">Users</div>
                     </div>
                     <div class="icon-box">

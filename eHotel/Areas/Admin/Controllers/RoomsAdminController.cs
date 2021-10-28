@@ -136,7 +136,7 @@ namespace eHotel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RoomNumber,Description,Price,StatusId,TypeId")] Room room, HttpPostedFileBase Image)
+        public ActionResult Edit([Bind(Include = "Id,RoomNumber,Image,Description,Price,StatusId,TypeId")] Room room, HttpPostedFileBase InputImage)
         {
             if (ModelState.IsValid)
             {
@@ -144,11 +144,11 @@ namespace eHotel.Areas.Admin.Controllers
 
                 try
                 {
-                    if (Image != null)
+                    if (InputImage != null)
                     {
-                        string fileName = Path.GetFileName(Image.FileName);
+                        string fileName = Path.GetFileName(InputImage.FileName);
                         string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
-                        Image.SaveAs(path);
+                        InputImage.SaveAs(path);
                         roomImage = "~/Uploads/" + fileName;
                     }
                 }
