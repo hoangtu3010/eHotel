@@ -221,6 +221,7 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomsAdminController.cs" />
     <Compile Include="Areas\User\Controllers\AuthUserController.cs" />
+    <Compile Include="Areas\User\Controllers\BookingUserController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
@@ -2236,6 +2237,13 @@
     <Content Include="Areas\Admin\Views\RoomsAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AuthAdmin\Login.cshtml" />
+    <Content Include="Areas\User\Views\AuthUser\Login.cshtml" />
+    <Content Include="Areas\User\Views\BookingUser\Booking.cshtml" />
+    <Content Include="Areas\User\Views\BookingUser\Create.cshtml" />
+    <Content Include="Areas\User\Views\BookingUser\Delete.cshtml" />
+    <Content Include="Areas\User\Views\BookingUser\Details.cshtml" />
+    <Content Include="Areas\User\Views\BookingUser\Edit.cshtml" />
+    <Content Include="Areas\User\Views\BookingUser\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2265,8 +2273,6 @@
     <Content Include="Views\Rooms\Details.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Rooms\Seen.cshtml" />
-    <Content Include="Views\Rooms\Booking.cshtml" />
-    <Content Include="Views\Rooms\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
