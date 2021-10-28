@@ -51,12 +51,26 @@
 
 .search-box{
     border: 1px solid #ddd;
-    padding: 2px;
+    padding: 5px 35px;
     border-radius: 5px;
 }
 
-.search-button{
-    border: none;
-    padding: 2px;
-    border-radius: 5px;
+.search-box:focus{
+    outline: none;
+    border: 1px solid #3498db;
 }
+
+.search-button{
+    border: 1px solid #3498db;
+    padding: 5px;
+    color: #3498db;
+    border-radius: 5px;
+    background: #fff;
+    transition: .3s;
+}
+
+.search-button:hover{
+    background-color: #3498db;
+    color: #fff;
+}
+

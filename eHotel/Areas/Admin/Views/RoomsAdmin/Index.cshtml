@@ -9,14 +9,14 @@
 <div class="data-list table-style">
     <div class="cart-header">
         <h2>Rooms</h2>
-        @using (Html.BeginForm("Index", "Rooms", FormMethod.Get))
+        @using (Html.BeginForm("Index", "RoomsAdmin", FormMethod.Get))
         {
             <div style="position: relative">
                 @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "search-box" })
                 <input type="submit" value="Search" class="search-button" />
             </div>
         }
-        <a href="@Url.Action("LogOff", "AuthAdmin")">logoff</a>
+        @*<a href="@Url.Action("LogOff", "AuthAdmin")">logoff</a>*@
         <a href="@Url.Action("Create")" class="button-action-add">
             <i class="fas fa-plus"></i>
         </a>
