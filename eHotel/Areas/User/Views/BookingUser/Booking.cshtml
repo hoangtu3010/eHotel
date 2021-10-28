@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Booking";
+    var Vnd = Model.room.Price;
 }
 
 
@@ -94,9 +95,15 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.booking.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.booking.Total, new { htmlAttributes = new { @class = "form-control",@type="number",@step="any", @readonly = "readonly", @Value = Model.room.Price } })
+                </div>
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.booking.User, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.User.Email, new { htmlAttributes = new { @class = "form-control", @type = "text", @readonly = "readonly", @Value = User.Identity.Name } })
+                    @Html.EditorFor(model => model.booking.UserId, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly", @Value = 1 } })
                 </div>
             </div>
             <div class="form-group">
@@ -115,30 +122,36 @@
 </div>
 <script>
 
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
 
-        const getE = document.querySelector("#booking_CheckIn");
-        getE.addEventListener("change", (event) => {
-            console.log(event.target.value);
-            var enteredDate = new Date(event.target.value);
-            enteredDate.setDate(enteredDate.getDate() + 1);
-            console.log(enteredDate.getDate());
-            function formatDate(date) {
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + d.getDate(),
-                    year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [year, month, day].join('-');
+    }
+    const getE = document.querySelector("#booking_CheckIn");
 
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-                return [year, month, day].join('-');
-            }
-            var minx = formatDate(enteredDate)
-            console.log(minx)
-            document.getElementById('booking_CheckOut').setAttribute('min', minx);
-            document.getElementById('booking_CheckOut').value = minx;
-        })
+
+    const getO = document.querySelector("#booking_CheckOut");
+    getE.addEventListener("change", (event) => {
+        console.log(event.target.value);
+        var enteredDate = new Date(event.target.value);
+        enteredDate.setDate(enteredDate.getDate() + 1);
+        console.log(enteredDate.getDate());
+        console.log(@Vnd)
+        var minx = formatDate(enteredDate)
+        console.log(minx)
+        document.getElementById('booking_CheckOut').setAttribute('min', minx);
+        document.getElementById('booking_CheckOut').value = minx;
+    })
+    getO.addEventListener("chang", (event) => {
+
+    })
 </script>
 
 <div>

@@ -7,12 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using eHotel.Models;
+using NLog.Fluent;
+using NLog;
 
 namespace eHotel.Areas.User.Controllers
 {
     public class BookingUserController : Controller
     {
         private SystemDbContext db = new SystemDbContext();
+
 
         public ActionResult Booking(int? id)
         {
@@ -37,53 +40,28 @@ namespace eHotel.Areas.User.Controllers
             return View(mymodel);
         }
 
-        // GET: User/BookingUser
-        public ActionResult Index()
-        {
-            var bookings = db.Bookings.Include(b => b.Room).Include(b => b.User);
-            return View(bookings.ToList());
-        }
-
-        // GET: User/BookingUser/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Booking booking = db.Bookings.Find(id);
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(booking);
-        }
-
-        // GET: User/BookingUser/Create
-        public ActionResult Create()
-        {
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
-            return View();
-        }
-
-        // POST: User/BookingUser/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CheckIn,CheckOut,Total,Status,PaymentType,UserId,RoomId")] Booking booking)
+        public ActionResult Booking([Bind(Include ="booking,room")] MultiRoomBooking multi)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Bookings.Add(booking);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var a = multi;
+                    db.Bookings.Add(a.booking);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }catch( Exception e)
+            {
+                Console.WriteLine(e);
             }
+            
 
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image", booking.RoomId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", booking.UserId);
-            return View(booking);
+            //ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image", booking.RoomId);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", booking.UserId);
+            return Redirect("~/Rooms");
         }
 
         // GET: User/BookingUser/Edit/5
