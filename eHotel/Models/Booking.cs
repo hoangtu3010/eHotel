@@ -12,7 +12,6 @@ namespace eHotel.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập ngày đặt phòng!")]
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         
@@ -22,6 +21,7 @@ namespace eHotel.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CheckOut { get; set; }
+        [DisplayFormat(DataFormatString = "{0:#}")]
 
         public decimal Total { get; set; }
 

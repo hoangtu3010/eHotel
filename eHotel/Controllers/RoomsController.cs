@@ -55,29 +55,7 @@ namespace eHotel.Controllers
             }
             return View(room);
         }
-        public ActionResult Booking(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Room room = db.Rooms.Find(id);
-            if (room == null)
-            {
-                return HttpNotFound();
-            }
-            MultiRoomBooking mymodel = new MultiRoomBooking();
-
-            mymodel.room = room;
-            mymodel.booking = new Booking();
-            mymodel.booking.CheckIn = DateTime.Now;
-            mymodel.booking.CheckOut = DateTime.Now.AddDays(1);
-
-            mymodel.booking.Room = room;
-
-            return View(mymodel);
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

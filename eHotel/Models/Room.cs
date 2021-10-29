@@ -20,6 +20,7 @@ namespace eHotel.Models
         public string Description { get; set; }
         
         [Required(ErrorMessage = "Vui lòng điền giá!")]
+        [DisplayFormat(DataFormatString = "{0:#}")]
         public decimal Price { get; set; }
 
         public int StatusId { get; set; }

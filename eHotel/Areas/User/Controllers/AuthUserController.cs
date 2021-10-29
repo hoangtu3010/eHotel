@@ -85,5 +85,13 @@ namespace eHotel.Areas.User.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult LogOff()
+        {
+            //WebSecurity.Logout();
+            FormsAuthentication.SignOut();
+            return Redirect("Register");
+        }
     }
 }

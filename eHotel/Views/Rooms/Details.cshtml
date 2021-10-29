@@ -61,6 +61,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Booking", "Booking", new { id = Model.Id }) |
+    @Html.RouteLink("Booking", new { action = "Booking", controller = "BookingUser", area = "User", id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
