@@ -48,8 +48,11 @@ namespace eHotel.Areas.User.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var a = multi;
-                    db.Bookings.Add(a.booking);
+                    string currentName = User.Identity.Name;
+                    var userId = db.Users.Where(x => x.Email == currentName).Select(x => x.Id).FirstOrDefault();
+                    multi.booking.UserId = userId;
+                    multi.booking.Status = "Chưa duyệt";
+                    db.Bookings.Add(multi.booking);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

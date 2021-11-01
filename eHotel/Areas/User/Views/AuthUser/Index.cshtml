@@ -1,9 +1,11 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>User</h2>
+
+@User.Identity.GetUserId()
 
 <div>
     @Html.ActionLink("Log out", "LogOff")

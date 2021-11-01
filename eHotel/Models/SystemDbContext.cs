@@ -10,10 +10,11 @@ namespace eHotel.Models
     {
         public SystemDbContext() : base("eHotel") { }
 
-        public DbSet<Admin> Admins { get; set; } //
+        public DbSet<Admin> Admins { get; set; }
 
-        public DbSet<User> Users { get; set; } //        
-        public DbSet<Type> Types { get; set; } //
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Type> Types { get; set; }
 
         public DbSet<Status> Statuses { get; set; }
 

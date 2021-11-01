@@ -1,4 +1,5 @@
 ﻿using eHotel.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace eHotel.Areas.User.Controllers
 {
     public class AuthUserController : Controller
     {
+
 
         private SystemDbContext db = new SystemDbContext();
 
