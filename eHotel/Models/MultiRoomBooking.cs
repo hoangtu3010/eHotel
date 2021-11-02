@@ -8,6 +8,7 @@ namespace eHotel.Models
     public class MultiRoomBooking
     {
         public Room room { get; set; }
+
         public Booking booking { get; set; }
     }
 }

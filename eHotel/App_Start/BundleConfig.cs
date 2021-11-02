@@ -24,7 +24,8 @@ namespace eHotel
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/homeStyle/home-style.css"));
 
             // add css theme
             bundles.Add(new StyleBundle("~/adminLTE/css").Include(
