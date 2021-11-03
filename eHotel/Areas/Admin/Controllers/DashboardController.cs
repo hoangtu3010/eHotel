@@ -22,6 +22,7 @@ namespace eHotel.Areas.Admin.Controllers
 
             multipleAdmin.room = rooms;
             multipleAdmin.user = users;
+            multipleAdmin.booking = db.Bookings.ToList();
 
             return View(multipleAdmin);
         }

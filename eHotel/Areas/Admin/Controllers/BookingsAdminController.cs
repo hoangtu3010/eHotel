@@ -7,67 +7,66 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using eHotel.Models;
-using NLog.Fluent;
-using NLog;
+using PagedList;
 
-namespace eHotel.Areas.User.Controllers
+namespace eHotel.Areas.Admin.Controllers
 {
-    public class BookingUserController : Controller
+    public class BookingsAdminController : Controller
     {
         private SystemDbContext db = new SystemDbContext();
 
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            var bookings = db.Bookings.Include(b => b.Room).Include(b => b.User);
 
-        public ActionResult Booking(int? id)
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.BookingSortParm = String.IsNullOrEmpty(sortOrder) ? "bookings_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                bookings = bookings.Where(s => (s.Room.RoomNumber).ToString().Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "bookings_desc":
+                    bookings = bookings.OrderByDescending(s => s.Room.RoomNumber);
+                    break;
+                default:
+                    bookings = bookings.OrderBy(s => s.Room.RoomNumber);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(bookings.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Room room = db.Rooms.Find(id);
-            if (room == null)
+            Booking booking = db.Bookings.Find(id);
+            if (booking == null)
             {
                 return HttpNotFound();
             }
-            MultiRoomBooking mymodel = new MultiRoomBooking();
-
-            mymodel.room = room;
-            mymodel.booking = new Booking();
-            mymodel.booking.CheckIn = DateTime.Now;
-            mymodel.booking.CheckOut = DateTime.Now.AddDays(1);
-
-            mymodel.booking.Room = room;
-
-            return View(mymodel);
+            return View(booking);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Booking([Bind(Include ="booking,room")] MultiRoomBooking multi)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    string currentName = User.Identity.Name;
-                    var userId = db.Users.Where(x => x.Email == currentName).Select(x => x.Id).FirstOrDefault();
-                    multi.booking.UserId = userId;
-                    multi.booking.Status = Models.Booking.StatusOption.Wait;
-                    db.Bookings.Add(multi.booking);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }catch( Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            
-
-            //ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image", booking.RoomId);
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", booking.UserId);
-            return Redirect("~/Rooms");
-        }
-
-        // GET: User/BookingUser/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,9 +83,6 @@ namespace eHotel.Areas.User.Controllers
             return View(booking);
         }
 
-        // POST: User/BookingUser/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,CheckIn,CheckOut,Total,Status,PaymentType,UserId,RoomId")] Booking booking)
@@ -102,7 +98,6 @@ namespace eHotel.Areas.User.Controllers
             return View(booking);
         }
 
-        // GET: User/BookingUser/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +112,6 @@ namespace eHotel.Areas.User.Controllers
             return View(booking);
         }
 
-        // POST: User/BookingUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

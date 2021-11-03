@@ -57,6 +57,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -221,9 +227,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BookingsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomsAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\User\Controllers\AuthUserController.cs" />
     <Compile Include="Areas\User\Controllers\BookingUserController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
@@ -2247,6 +2258,30 @@
     <Content Include="Areas\User\Views\BookingUser\Details.cshtml" />
     <Content Include="Areas\User\Views\BookingUser\Edit.cshtml" />
     <Content Include="Areas\User\Views\BookingUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Types\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Types\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Types\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Types\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Types\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Status\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Status\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Status\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Status\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Status\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BookingsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BookingsAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BookingsAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BookingsAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

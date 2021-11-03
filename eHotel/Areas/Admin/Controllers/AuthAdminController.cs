@@ -83,7 +83,7 @@ namespace eHotel.Areas.Admin.Controllers
         {
             //WebSecurity.Logout();
             FormsAuthentication.SignOut();
-            return Redirect("Register");
+            return Redirect("Login");
         }
     }
 

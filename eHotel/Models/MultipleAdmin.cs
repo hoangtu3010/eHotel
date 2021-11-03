@@ -10,5 +10,7 @@ namespace eHotel.Models
         public IEnumerable<Room> room { get; set; }
 
         public IEnumerable<User> user { get; set; }
+
+        public IEnumerable<Booking> booking { get; set; }
     }
 }
