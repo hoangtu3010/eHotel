@@ -26,7 +26,7 @@ namespace eHotel.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CheckOut { get; set; }
-        [DisplayFormat(DataFormatString = "{0:#}")]
+        [DisplayFormat(DataFormatString = "{0:N}")]
 
         public decimal Total { get; set; }
 

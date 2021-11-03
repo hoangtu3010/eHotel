@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Booking";
-    var Vnd = Model.room.Price;
+    var Vnd = Decimal.ToInt32(Model.room.Price);
 }
 
 
@@ -89,7 +89,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.booking.CheckOut, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.CheckOut, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                    @Html.EditorFor(model => model.booking.CheckOut, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = Model.booking.CheckOut.ToString("yyyy-MM-dd") } })
                     @Html.ValidationMessageFor(model => model.booking.CheckOut, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -97,15 +97,12 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.booking.Total, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.Total, new { htmlAttributes = new { @class = "form-control",@type="number",@step="any", @readonly = "readonly", @Value = Model.room.Price } })
+                    @*@Html.EditorFor(model => model.booking.Total, new { htmlAttributes = new { @class = "form-control", @type = "number", @Value = Vnd } })*@
+                    <h4>
+                        <b id="Booking_Total">@Vnd  </b>
+                    </h4>
                 </div>
             </div>
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.booking.User, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.UserId, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly", @Value = 1 } })
-                </div>
-            </div>*@
             <div class="form-group">
                 @Html.LabelFor(model => model.booking.Room, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -121,35 +118,46 @@
     }
 </div>
 <script>
+    document.getElementById('Booking_Total').innerHTML = formatNumber(@Vnd);
 
     function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
             year = d.getFullYear();
-
         if (month.length < 2)
             month = '0' + month;
         if (day.length < 2)
             day = '0' + day;
         return [year, month, day].join('-');
     }
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
     const getE = document.querySelector("#booking_CheckIn");
 
 
     const getO = document.querySelector("#booking_CheckOut");
     getE.addEventListener("change", (event) => {
-        console.log(event.target.value);
         var enteredDate = new Date(event.target.value);
         enteredDate.setDate(enteredDate.getDate() + 1);
-        console.log(enteredDate.getDate());
-        console.log(@Vnd)
         var minx = formatDate(enteredDate)
-        console.log(minx)
         document.getElementById('booking_CheckOut').setAttribute('min', minx);
         document.getElementById('booking_CheckOut').value = minx;
+        var Cin = new Date(document.getElementById('booking_CheckIn').value);
+        var Cout = new Date(document.getElementById('booking_CheckOut').value);
+        var total = (Cout - Cin) / 86400000 *@Vnd;
+        console.log("ok")
+        document.getElementById('Booking_Total').innerHTML = formatNumber(total);
+
     })
-    getO.addEventListener("chang", (event) => {
+    getO.addEventListener("change", (event) => {;
+        var Cin = new Date(document.getElementById('booking_CheckIn').value);
+        var Cout = new Date(document.getElementById('booking_CheckOut').value);
+        var total = (Cout - Cin) / 86400000 *@Vnd;
+        document.getElementById('Booking_Total').innerHTML = formatNumber(total);
+        console.log()
+
 
     })
 </script>
