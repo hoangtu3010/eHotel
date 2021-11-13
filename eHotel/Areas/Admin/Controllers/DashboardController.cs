@@ -26,5 +26,16 @@ namespace eHotel.Areas.Admin.Controllers
 
             return View(multipleAdmin);
         }
+
+        public ActionResult GetData()
+        {
+            var chart = db.Bookings
+               .Where((c) => c.CheckIn.Year == 2021)
+               .GroupBy((c) => c.CheckIn.Month)
+               .Select((c) => new Chart { Revenu = c.Sum(p => p.Total), Month = c.Key })
+               .ToList();
+
+            return Json(chart, JsonRequestBehavior.AllowGet);
+        }
     }
 }

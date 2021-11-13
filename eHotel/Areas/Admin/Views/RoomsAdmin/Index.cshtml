@@ -27,7 +27,7 @@
                 <th width="10%" class="text-center">
                     @Html.ActionLink("Room", "Index", new { sortOrder = ViewBag.RoomSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
-                <th>
+                <th class="text-center">
                     Image
                 </th>
                 <th>
@@ -51,7 +51,7 @@
                 <tr>
                     <td class="text-center">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
                     <td class="text-center">
-                        <img src="@Url.Content(item.Image)" alt="image" width="50" height="50" />
+                        <img src="@Url.Content(item.Image)" alt="image" width="50" height="50" style="border-radius: 10px"/>
                     </td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td class="text-center">

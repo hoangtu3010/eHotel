@@ -4,6 +4,13 @@
     ViewBag.Title = "Index";
 }
 
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.min.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+
 <div class="container-fluid">
     @* Card box *@
     <div class="card-box">
@@ -56,6 +63,12 @@
     </div>
     @* End card box *@
 
+    @* Chart *@
+    <div class="chart-revenu">
+        <div id="revenu_chart"></div>
+    </div>
+    @* End chart *@
+
     <div class="row">
         @*Rooms*@
         <div class="col-lg-7">
@@ -98,17 +111,93 @@
                     <h2>Recent Users</h2>
                 </div>
                 <table class="table table-light">
-                    @foreach (var item in Model.room)
+                    @foreach (var item in Model.user)
                     {
                         <tr>
                             <td width="60px"><div class="img-user"><img src="~/Content/adminLTE/dist/img/user3-128x128.jpg" alt="avt" /></div></td>
-                            <td><h6>Lena <br /> <span>Italy</span></h6></td>
+                            <td><h6>@item.FullName <br /> <span>@item.Email</span></h6></td>
                         </tr>
                     }
-                    </table>
+                </table>
             </div>
         </div>
         @*End User*@
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function () {
+        console.log("ready!");
+        $.getJSON("/Admin/Dashboard/GetData", function (data) {
+            var month = [];
+            var revenu = [];
+
+            for (var i = 0; i < data.length; i++) {
+                month.push(data[i].Month);
+                revenu.push(data[i].Revenu);
+            }
+
+            Highcharts.chart('revenu_chart', {
+
+                title: {
+                    text: 'Monthly revenue growth, 2021'
+                },
+
+                subtitle: {
+                    text: 'HaNoi Hotel'
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'Amount of money'
+                    },
+                    min: 0
+                },
+
+                xAxis: {
+                    title: {
+                        text: "Month"
+                    },
+                    categories: month
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                //plotOptions: {
+                //    series: {
+                //        label: {
+                //            connectorAllowed: false
+                //        },
+                //        pointStart: 1
+                //    }
+                //},
+
+                series: [{
+                    name: 'Money',
+                    data: revenu
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+        })
+    });
+</script>

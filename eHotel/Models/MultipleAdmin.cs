@@ -12,5 +12,14 @@ namespace eHotel.Models
         public IEnumerable<User> user { get; set; }
 
         public IEnumerable<Booking> booking { get; set; }
+
+        public IEnumerable<Chart> chart { get; set; }
+    }
+
+    public class Chart
+    {
+        public decimal Revenu { get; set; }
+
+        public int Month { get; set; }
     }
 }
