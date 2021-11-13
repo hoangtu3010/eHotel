@@ -56,7 +56,6 @@ namespace eHotel.Data
             {
             new Models.Status{Content="Rảnh"},
             new Models.Status{Content="Đang sử dụng"},
-            new Models.Status{Content="Đã đặt trước"},
             };
             statuses.ForEach(s => context.Statuses.Add(s));
             context.SaveChanges();
@@ -64,9 +63,16 @@ namespace eHotel.Data
 
             var rooms = new List<Room>
             {
-            new Room{RoomNumber=101, Image ="~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 200000, StatusId = 1, TypeId = 1 },
+            new Room{RoomNumber=101, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 200000, StatusId = 1, TypeId = 1 },
             new Room{RoomNumber=102, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 250000, StatusId = 2, TypeId = 2 },
-            new Room{RoomNumber=103, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 300000, StatusId = 1, TypeId = 3 },
+            new Room{RoomNumber=103, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 500000, StatusId = 1, TypeId = 3 },
+            new Room{RoomNumber=104, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 300000, StatusId = 1, TypeId = 2 },
+            new Room{RoomNumber=105, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 280000, StatusId = 1, TypeId = 2 },
+            new Room{RoomNumber=106, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 350000, StatusId = 2, TypeId = 1 },
+            new Room{RoomNumber=107, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 150000, StatusId = 1, TypeId = 1 },
+            new Room{RoomNumber=108, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 400000, StatusId = 2, TypeId = 1 },
+            new Room{RoomNumber=109, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 300000, StatusId = 1, TypeId = 1 },
+            new Room{RoomNumber=110, Image = "~/Uploads/default.jpg", Description= "Phòng sạch sẽ!",Price= 450000, StatusId = 1, TypeId = 3 },
            
             };
             rooms.ForEach(s => context.Rooms.Add(s));

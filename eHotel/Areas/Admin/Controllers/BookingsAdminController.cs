@@ -17,7 +17,7 @@ namespace eHotel.Areas.Admin.Controllers
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var bookings = db.Bookings.Include(b => b.Room).Include(b => b.User);
+            var bookings = db.Bookings.Include(b => b.Room);
 
             ViewBag.CurrentSort = sortOrder;
             ViewBag.BookingSortParm = String.IsNullOrEmpty(sortOrder) ? "bookings_desc" : "";
@@ -79,13 +79,12 @@ namespace eHotel.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image", booking.RoomId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", booking.UserId);
             return View(booking);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CheckIn,CheckOut,Total,Status,PaymentType,UserId,RoomId")] Booking booking)
+        public ActionResult Edit([Bind(Include = "Id,Name,Cmnd,Tel,CheckIn,CheckOut,Total,PaymentType,RoomId")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +93,6 @@ namespace eHotel.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image", booking.RoomId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", booking.UserId);
             return View(booking);
         }
 

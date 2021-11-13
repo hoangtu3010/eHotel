@@ -3,37 +3,39 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-pos">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div class="navbar-item">
+                <div class="navbar-header">
+                    <img src="~/Uploads/hotel-logo.png" alt="logo" height="50"/>
+                </div>
+                <div class="nav-time">
+                    <div id="clock" class="clock">clock</div>
+                    <div style="padding: 0 10px;">|</div>
+                    <span id="date">Saturday 13 November 2021</span>
+                </div>
+                <div class="nav-person">
+                    <button class="btn btn-person">
+                        <img src="~/Uploads/default.jpg" alt="Alternate Text" />
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div class="body-content">
+        <div class="container">
+            @RenderBody()
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -42,3 +44,35 @@
 
 </body>
 </html>
+
+<script>
+    function currentTime() {
+        let date = new Date();
+        let hh = date.getHours();
+        let mm = date.getMinutes();
+        let ss = date.getSeconds();
+        let session = "AM";
+
+        if (hh == 0) {
+            hh = 12;
+        }
+        if (hh > 12) {
+            hh = hh - 12;
+            session = "PM";
+        }
+
+        hh = (hh < 10) ? "0" + hh : hh;
+        mm = (mm < 10) ? "0" + mm : mm;
+        ss = (ss < 10) ? "0" + ss : ss;
+
+        let time = hh + " : " + mm + " : " + ss + " " + session;
+
+        document.getElementById("date").innerHTML = date.toDateString();
+
+        document.getElementById("clock").innerText = time;
+        let t = setTimeout(function () { currentTime() }, 1000);
+    }
+
+    currentTime();
+
+</script>

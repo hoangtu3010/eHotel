@@ -20,6 +20,21 @@ namespace eHotel.Areas.Admin.Controllers
             var rooms = db.Rooms.Include(r => r.Status).Include(r => r.Type);
             var users = db.Users.ToList();
 
+          
+
+            var money = db.Bookings
+               .Where((c) => c.CheckOut.Year == DateTime.Now.Year).Where((c) => c.CheckOut.Month == DateTime.Now.Month).ToList();
+
+            decimal total = 0;
+
+            foreach (var item in money)
+            {
+                if (money != null)
+                    total += item.Total;
+            }
+
+            ViewBag.Total = total;
+
             multipleAdmin.room = rooms;
             multipleAdmin.user = users;
             multipleAdmin.booking = db.Bookings.ToList();
@@ -30,8 +45,8 @@ namespace eHotel.Areas.Admin.Controllers
         public ActionResult GetData()
         {
             var chart = db.Bookings
-               .Where((c) => c.CheckIn.Year == 2021)
-               .GroupBy((c) => c.CheckIn.Month)
+               .Where((c) => c.CheckOut.Year == DateTime.Now.Year)
+               .GroupBy((c) => c.CheckOut.Month)
                .Select((c) => new Chart { Revenu = c.Sum(p => p.Total), Month = c.Key })
                .ToList();
 

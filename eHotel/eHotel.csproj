@@ -248,6 +248,7 @@
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MultipleAdmin.cs" />
+    <Compile Include="Models\MultipleHome.cs" />
     <Compile Include="Models\MultiRoomBooking.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\SeenRoom.cs" />
@@ -2154,7 +2155,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -2294,6 +2294,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Uploads\default.jpg" />
+    <Content Include="Uploads\hotel-logo.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

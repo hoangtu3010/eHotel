@@ -15,15 +15,31 @@
         </dt>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User.FullName)
+            Tên khách hàng
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.User.FullName)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckIn)
+            Chứng minh nhân dân
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cmnd)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+
+        <dt>
+            Ngày đặt
         </dt>
 
         <dd>
@@ -31,7 +47,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckOut)
+            Ngày trả
         </dt>
 
         <dd>
@@ -39,7 +55,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Total)
+            Tổng tiền
         </dt>
 
         <dd>
@@ -47,15 +63,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentType)
+            Kiểu thanh toán
         </dt>
 
         <dd>

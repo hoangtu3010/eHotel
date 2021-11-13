@@ -53,10 +53,8 @@ namespace eHotel.Areas.User.Controllers
                     var room = db.Rooms.Find(multi.booking.RoomId);
                     var days = ((int)(multi.booking.CheckOut - multi.booking.CheckIn).TotalDays) ;
 
-                    multi.booking.UserId = userId;
                     multi.booking.Total = days*room.Price;
 
-                    multi.booking.Status = Models.Booking.StatusOption.Wait;
                     db.Bookings.Add(multi.booking);
                     db.SaveChanges();
                     return Redirect("~/Rooms");
@@ -85,7 +83,6 @@ namespace eHotel.Areas.User.Controllers
                 return HttpNotFound();
             }
             ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image", booking.RoomId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", booking.UserId);
             return View(booking);
         }
 
@@ -103,7 +100,6 @@ namespace eHotel.Areas.User.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Image", booking.RoomId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", booking.UserId);
             return View(booking);
         }
 

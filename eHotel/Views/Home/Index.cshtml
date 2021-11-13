@@ -1,5 +1,180 @@
-﻿@{
+﻿@model eHotel.Models.MultipleHome
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="test">text</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="box-data list-room">
+            <div class="box-header">
+                <select id="select_type" class="select-type" onchange="changeType()">
+                    <option value="All" selected>All</option>
+                    @foreach (var item in Model.types)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="box-content">
+                <div class="row">
+                    @foreach (var item in Model.rooms)
+                    {
+                        <div class="col-md-4">
+                            <button class="button-room" onclick="bookingRoom(@item.Id, @item.RoomNumber)">
+                                <div class="box-item">
+                                    <div class="item-image">
+                                        <img src="@Url.Content(item.Image)" alt="image" />
+                                        <span class="type-@item.Type.Id">@item.Type.Name</span>
+                                        <i class="bi bi-plus-circle"></i>
+                                    </div>
+                                    <div class="item-info">
+                                        <b>Phòng @item.RoomNumber</b>
+                                        @*<p> @Decimal.ToInt32(item.Price) VND</p>*@
+                                        <p>@item.Price.ToString("###,###,###,### vnd").Replace(",", ".")</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+
+        @using (Html.BeginForm("Booking", "Home"))
+        {
+            @Html.AntiForgeryToken()
+            <div class="box-data check-info">
+                <h4 class="text-center">Enter Info Customer</h4>
+                <div style="padding: 20px 0">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.booking.Name, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
+                                @Html.LabelFor(model => model.booking.Name, htmlAttributes: new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.booking.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.booking.Cmnd, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
+                                @Html.LabelFor(model => model.booking.Cmnd, htmlAttributes: new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.booking.Cmnd, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.booking.Tel, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
+                                @Html.LabelFor(model => model.booking.Tel, htmlAttributes: new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.booking.Tel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.booking.CheckIn, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = DateTime.Today.ToString("yyyy-MM-dd"), placeholder = " " } })
+                                @Html.LabelFor(model => model.booking.CheckIn, htmlAttributes: new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.booking.CheckIn, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.booking.CheckOut, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = Model.booking.CheckOut.ToString("yyyy-MM-dd"), placeholder = " " } })
+                                @Html.LabelFor(model => model.booking.CheckOut, htmlAttributes: new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.booking.CheckOut, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                                @Html.EditorFor(model => model.booking.RoomId, new { htmlAttributes = new { @class = "form-control", @Value = "", @type = "hidden", placeholder = " " } })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.booking.Room.RoomNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = "", placeholder = " " } })
+                                @Html.LabelFor(model => model.booking.Room.RoomNumber, htmlAttributes: new { @class = "form-label" })
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.booking.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <h4>
+                                    <b id="Booking_Total">@Vnd</b>
+                                </h4>
+                        </div>*@
+                </div>
+            </div>
+            <div class="box-data selected-room">
+                <div class="form-group">
+                    <div class="button-form">
+                        <button type="submit" class="btn"><i class="bi bi-cash"></i> Pay With Cash</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-3">
+        <div class="box-data checkout">
+            <div class="checkout-content">
+                <b>Total date: </b>
+                <span>6</span>
+            </div>
+            <div class="checkout-content">
+                <b>Subtotal: </b>
+                <span>500.000 vnd</span>
+            </div>
+            <div class="checkout-content total">
+                <b>Total: </b>
+                <span>3.000.000 vnd</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function bookingRoom(id, room) {
+        document.getElementById("booking_RoomId").value = id;
+        document.getElementById("booking_Room_RoomNumber").value = room;
+    }
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [year, month, day].join('-');
+    }
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+    const getE = document.querySelector("#booking_CheckIn");
+
+
+    const getO = document.querySelector("#booking_CheckOut");
+    getE.addEventListener("change", (event) => {
+        var enteredDate = new Date(event.target.value);
+        enteredDate.setDate(enteredDate.getDate() + 1);
+        var minx = formatDate(enteredDate)
+        document.getElementById('booking_CheckOut').setAttribute('min', minx);
+        document.getElementById('booking_CheckOut').value = minx;
+        var Cin = new Date(document.getElementById('booking_CheckIn').value);
+        var Cout = new Date(document.getElementById('booking_CheckOut').value);
+        //var total = (Cout - Cin) / 86400000 *;
+        //document.getElementById('Booking_Total').innerHTML = formatNumber(total);
+
+    })
+    getO.addEventListener("change", (event) => {;
+        var Cin = new Date(document.getElementById('booking_CheckIn').value);
+        var Cout = new Date(document.getElementById('booking_CheckOut').value);
+        //var total = (Cout - Cin) / 86400000 *;
+        //document.getElementById('Booking_Total').innerHTML = formatNumber(total);
+    })
+</script>
