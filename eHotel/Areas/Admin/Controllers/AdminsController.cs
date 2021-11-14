@@ -12,13 +12,17 @@ using eHotel.Models;
 
 namespace eHotel.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     public class AdminsController : Controller
     {
         private SystemDbContext db = new SystemDbContext();
 
         public ActionResult Index()
         {
-            return View(db.Admins.ToList());
+            var admin = db.Admins;
+
+            return View(admin);
         }
 
         public ActionResult Details(int? id)
@@ -66,6 +70,7 @@ namespace eHotel.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(admin);
         }
 

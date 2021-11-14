@@ -8,11 +8,11 @@ using System.Web.Mvc;
 
 namespace eHotel.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = "Admin, Moderator")]
     public class DashboardController : Controller
     {
         private SystemDbContext db = new SystemDbContext();
-
-        [Authorize]
         // GET: Admin/Dashboard
         public ActionResult Index()
         {
@@ -20,17 +20,17 @@ namespace eHotel.Areas.Admin.Controllers
             var rooms = db.Rooms.Include(r => r.Status).Include(r => r.Type);
             var users = db.Users.ToList();
 
-          
+
 
             var money = db.Bookings
-               .Where((c) => c.CheckOut.Year == DateTime.Now.Year).Where((c) => c.CheckOut.Month == DateTime.Now.Month).ToList();
+               .Where((c) => c.CheckOut.Value.Year == DateTime.Now.Year).Where((c) => c.CheckOut.Value.Month == DateTime.Now.Month).ToList();
 
             decimal total = 0;
 
             foreach (var item in money)
             {
                 if (money != null)
-                    total += item.Total;
+                    total += item.Total.Value;
             }
 
             ViewBag.Total = total;
@@ -45,9 +45,9 @@ namespace eHotel.Areas.Admin.Controllers
         public ActionResult GetData()
         {
             var chart = db.Bookings
-               .Where((c) => c.CheckOut.Year == DateTime.Now.Year)
-               .GroupBy((c) => c.CheckOut.Month)
-               .Select((c) => new Chart { Revenu = c.Sum(p => p.Total), Month = c.Key })
+               .Where((c) => c.CheckOut.Value.Year == DateTime.Now.Year)
+               .GroupBy((c) => c.CheckOut.Value.Month)
+               .Select((c) => new Chart { Revenu = c.Sum(p => p.Total.Value), Month = c.Key })
                .ToList();
 
             return Json(chart, JsonRequestBehavior.AllowGet);

@@ -1,0 +1,129 @@
+﻿@model eHotel.Models.Booking
+
+@{
+    var Vnd = Decimal.ToInt32(Model.Room.Price);
+}
+
+@using (Html.BeginForm("CheckOut", "BookingList"))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Check Out</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="modal-body" id="checkOutModalBodyDiv">
+                <div class="row">
+
+                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", placeholder = " ", @type = "hidden" } })
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Cmnd, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
+                            @Html.LabelFor(model => model.Cmnd, htmlAttributes: new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Cmnd, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
+                            @Html.LabelFor(model => model.Tel, htmlAttributes: new { @class = "form-label" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { @class = "form-control", @type = "date", @readonly="readonly", @min = DateTime.Today.ToString("yyyy-MM-dd"), placeholder = " " } })
+                            @Html.LabelFor(model => model.CheckIn, htmlAttributes: new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = Model.CheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"), placeholder = " " } })
+                            @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="col-md-6">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model., new { htmlAttributes = new { @class = "form-control", @type = "date", @min = Model.CheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"), placeholder = " " } })
+                            @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                    @Html.EditorFor(model => model.RoomId, new { htmlAttributes = new { @class = "form-control", @type = "hidden", placeholder = " " } })
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                           Total: <b id="Booking_Total">@Vnd</b>
+                    </div>
+                </div>
+                 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="button-form">
+                        <button type="submit" class="btn btn-primary">Pay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+    document.getElementById('Booking_Total').innerHTML = formatNumber(@Vnd) + " VND";
+
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+            return [year, month, day].join('-');
+        }
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+        var getE = document.querySelector("#CheckIn");
+        var getO = document.querySelector("#CheckOut");
+
+        getE.addEventListener("change", (event) => {
+            var Cin = new Date(document.getElementById('CheckIn').value);
+            var Cout = new Date(document.getElementById('CheckOut').value);
+            var total = (((Cout - Cin) / 86400000) + 1) * @Vnd;
+            document.getElementById('Booking_Total').innerHTML = formatNumber(total) + " VND";
+
+        })
+        getO.addEventListener("change", (event) => {
+            var Cin = new Date(document.getElementById('CheckIn').value);
+            var Cout = new Date(document.getElementById('CheckOut').value);
+            var total = (((Cout - Cin) / 86400000) + 1) * @Vnd;
+            document.getElementById('Booking_Total').innerHTML = formatNumber(total) + " VND";
+        })
+</script>

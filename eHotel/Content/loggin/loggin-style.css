@@ -1,0 +1,119 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+}
+
+.height-self-center {
+    height: 100vh;
+    border-radius: 15px;
+}
+
+.align-self-center {
+    align-self: center !important;
+    padding: 0 20px;
+}
+
+.content-right{
+    padding: 0 20px;
+}
+
+.login-content .auth-card .auth-content {
+    min-height: 480px;
+    height: 100% !important;
+}
+
+.button-log {
+    border-radius: 10px;
+    background-color: #32BDEA;
+    border: 1px solid #32BDEA;
+}
+
+    .button-log:hover {
+        background-color: #17aedf;
+        border: 1px solid #16a5d3;
+    }
+
+    .button-log:focus {
+        outline: none;
+        box-shadow: none!important;
+    }
+
+.card{
+    border-radius: 15px;
+}
+
+.form-group {
+    margin-bottom: 2.2rem;
+    position: relative;
+}
+
+    .form-group .form-control {
+        border: 1px solid #ccc;
+        background-color: transparent;
+        border-radius: 10px;
+        transition: .2s;
+    }
+
+        .form-group .form-control:hover {
+            border-color: #68C8D5;
+        }
+
+        .form-group .form-control:focus {
+            border-color: #68C8D5;
+            box-shadow: none !important;
+        }
+        
+        .form-group .text-valid{
+            position: absolute;
+        }
+
+
+    .form-group .btn-inline {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #978f8f;
+        transition: .2s;
+    }
+
+        .form-group .btn-inline:hover {
+            color: #333;
+        }
+
+    .form-group .form-label {
+        position: absolute;
+        color: #ccc;
+        font-weight: 400 !important;
+        font-size: 1em;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 1.8rem;
+        user-select: none;
+        pointer-events: none;
+        transition: .3s;
+    }
+
+    .form-group .form-control:not(:placeholder-shown) + .form-label,
+    .form-group .form-control:focus + .form-label {
+        top: -5px !important;
+        padding: 0 5px;
+        display: inline-block;
+        background-color: #fff;
+        font-size: .9rem;
+        color: #68C8D5;
+    }
+
+.button-form button {
+    padding: 5px 20px;
+    border: 1px solid #68C8D5;
+    color: #68C8D5;
+    transition: .3s;
+}
+
+    .button-form button:hover {
+        background: #68C8D5;
+        color: #fff;
+    }

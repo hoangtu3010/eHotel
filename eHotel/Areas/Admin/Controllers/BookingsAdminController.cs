@@ -11,6 +11,7 @@ using PagedList;
 
 namespace eHotel.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Moderator")]
     public class BookingsAdminController : Controller
     {
         private SystemDbContext db = new SystemDbContext();
@@ -88,6 +89,10 @@ namespace eHotel.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var room = db.Rooms.Find(booking.RoomId);
+                var days = ((int)(booking.CheckOut.Value - booking.CheckIn).TotalDays + 1);
+                booking.Total = days * room.Price;
+                booking.Status = Booking.StatusOption.Yes;
                 db.Entry(booking).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

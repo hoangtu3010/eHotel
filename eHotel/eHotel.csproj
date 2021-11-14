@@ -234,10 +234,12 @@
     <Compile Include="Areas\Admin\Controllers\RoomsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\TypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserRoleMappingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\User\Controllers\AuthUserController.cs" />
     <Compile Include="Areas\User\Controllers\BookingUserController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\BookingListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Data\DbInitializer.cs" />
@@ -245,17 +247,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AdminRoleProvider.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MultipleAdmin.cs" />
     <Compile Include="Models\MultipleHome.cs" />
     <Compile Include="Models\MultiRoomBooking.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\SeenRoom.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\SystemDbContext.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRoleMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2151,6 +2156,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\homeStyle\home-style.css" />
+    <Content Include="Content\loggin\loggin-style.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -2282,6 +2288,11 @@
     <Content Include="Areas\Admin\Views\BookingsAdmin\Details.cshtml" />
     <Content Include="Areas\Admin\Views\BookingsAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BookingsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleMappings\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleMappings\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleMappings\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleMappings\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleMappings\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2295,6 +2306,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Uploads\default.jpg" />
     <Content Include="Uploads\hotel-logo.png" />
+    <Content Include="Uploads\loggin-img.png" />
+    <Content Include="Uploads\logoff.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2312,6 +2325,8 @@
     <Content Include="Views\Rooms\Details.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Rooms\Seen.cshtml" />
+    <Content Include="Views\BookingList\Index.cshtml" />
+    <Content Include="Views\BookingList\_CheckOutModalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,7 @@
           rel="stylesheet" />
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="~/Content/List-Style.css" rel="stylesheet" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
     @Styles.Render("~/adminLTE/css")
     @Styles.Render("~/adminStyle/css")
 </head>
@@ -26,16 +27,15 @@
         <!-- Navbar -->
         @Html.Partial("_Header")
         <!-- /.navbar -->
-
         <!-- Main Sidebar Container -->
         @Html.Partial("_Sidebar")
 
         <!-- Content Wrapper. Contains page content -->
-            <!-- Main content -->
-            <div class="content-wrapper" style="padding: 20px">
-                @RenderBody()
-            </div>
-            <!-- /.content -->
+        <!-- Main content -->
+        <div class="content-wrapper" style="padding: 20px">
+            @RenderBody()
+        </div>
+        <!-- /.content -->
         <!-- /.content-wrapper -->
 
         <footer class="main-footer">
@@ -55,12 +55,27 @@
 
         <div id="sidebar-overlay"></div>
     </div>
+
+    <div class="loader-wrapper">
+        <div class="loadding-drop">
+            <span class="loadding-item">.</span>
+            <span class="loadding-item" style="--delay: 0.2s">.</span>
+            <span class="loadding-item" style="--delay: 0.4s">.</span>
+            <span class="loadding-item" style="--delay: 0.6s">.</span>
+            <span class="loadding-item" style="--delay: 0.8s">.</span>
+        </div>
+    </div>
     <!-- ./wrapper -->
-    <!-- JS -->
-    @Scripts.Render("~/bundles/js")
+
 </body>
 
+<!-- JS -->
+
 <script>
+    $(window).on("load", function () {
+        $(".loader-wrapper").fadeOut("slow");
+    })
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -73,9 +88,7 @@
     $("#inputImage").change(function () {
         readURL(this);
     });
-</script>
 
-<script>
     (function () {
         'use strict'
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -93,5 +106,8 @@
             })
     })()
 </script>
+
+@Scripts.Render("~/bundles/js")
+
 
 </html>

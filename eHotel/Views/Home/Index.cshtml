@@ -6,7 +6,7 @@
 
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="box-data list-room">
             <div class="box-header">
                 <select id="select_type" class="select-type" onchange="changeType()">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-7">
 
         @using (Html.BeginForm("Booking", "Home"))
         {
@@ -66,13 +66,14 @@
                                 @Html.EditorFor(model => model.booking.Cmnd, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
                                 @Html.LabelFor(model => model.booking.Cmnd, htmlAttributes: new { @class = "form-label" })
                                 @Html.ValidationMessageFor(model => model.booking.Cmnd, "", new { @class = "text-danger" })
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 @Html.EditorFor(model => model.booking.Tel, new { htmlAttributes = new { @class = "form-control", placeholder = " " } })
                                 @Html.LabelFor(model => model.booking.Tel, htmlAttributes: new { @class = "form-label" })
-                                @Html.ValidationMessageFor(model => model.booking.Tel, "", new { @class = "text-danger" })
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -80,21 +81,23 @@
                                 @Html.EditorFor(model => model.booking.CheckIn, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = DateTime.Today.ToString("yyyy-MM-dd"), placeholder = " " } })
                                 @Html.LabelFor(model => model.booking.CheckIn, htmlAttributes: new { @class = "form-label" })
                                 @Html.ValidationMessageFor(model => model.booking.CheckIn, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-md-6">
 
-                            <div class="form-group">
-                                @Html.EditorFor(model => model.booking.CheckOut, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = Model.booking.CheckOut.ToString("yyyy-MM-dd"), placeholder = " " } })
-                                @Html.LabelFor(model => model.booking.CheckOut, htmlAttributes: new { @class = "form-label" })
-                                @Html.ValidationMessageFor(model => model.booking.CheckOut, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                                @Html.EditorFor(model => model.booking.RoomId, new { htmlAttributes = new { @class = "form-control", @Value = "", @type = "hidden", placeholder = " " } })
+                        @*<div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.booking.CheckOut, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = Model.booking.CheckOut.ToString("yyyy-MM-dd"), placeholder = " " } })
+                                    @Html.LabelFor(model => model.booking.CheckOut, htmlAttributes: new { @class = "form-label" })
+                                    @Html.ValidationMessageFor(model => model.booking.CheckOut, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+                        @Html.EditorFor(model => model.booking.RoomId, new { htmlAttributes = new { @class = "form-control", @Value = "", @type = "hidden", placeholder = " " } })
+
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.EditorFor(model => model.booking.Room.RoomNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = "", placeholder = " " } })
-                                @Html.LabelFor(model => model.booking.Room.RoomNumber, htmlAttributes: new { @class = "form-label" })
+                                <input type="text" id="booking_Room_RoomNumber" class="form-control" placeholder=" " readonly />
+                                <label class="form-label">Room Number</label>
                             </div>
                         </div>
                     </div>
@@ -110,29 +113,32 @@
             <div class="box-data selected-room">
                 <div class="form-group">
                     <div class="button-form">
-                        <button type="submit" class="btn"><i class="bi bi-cash"></i> Pay With Cash</button>
+                        <button type="submit" class="btn button button-booking"><i class="bi bi-bookmark-plus"></i> Booking</button>
+                        <a href="@Url.Action("Index", "BookingList")" class="btn button button-list"><i class="bi bi-view-list"></i> Booking List</a>
                     </div>
                 </div>
             </div>
         }
     </div>
 
-    <div class="col-md-3">
-        <div class="box-data checkout">
-            <div class="checkout-content">
-                <b>Total date: </b>
-                <span>6</span>
+    @*<div class="col-md-3">
+            <div class="box-data checkout">
+                <h4 class="text-center">Checkout</h4>
+                <div class="checkout-content">
+                    <b>Total date: </b>
+                    <span>6</span>
+                </div>
+                <div class="checkout-content">
+                    <b>Subtotal: </b>
+                    <span>500.000 vnd</span>
+                </div>
+                <hr />
+                <div class="checkout-content total">
+                    <b>Total: </b>
+                    <span>3.000.000 vnd</span>
+                </div>
             </div>
-            <div class="checkout-content">
-                <b>Subtotal: </b>
-                <span>500.000 vnd</span>
-            </div>
-            <div class="checkout-content total">
-                <b>Total: </b>
-                <span>3.000.000 vnd</span>
-            </div>
-        </div>
-    </div>
+        </div>*@
 </div>
 
 <script>
@@ -140,41 +146,4 @@
         document.getElementById("booking_RoomId").value = id;
         document.getElementById("booking_Room_RoomNumber").value = room;
     }
-
-    function formatDate(date) {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-        return [year, month, day].join('-');
-    }
-    function formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    }
-    const getE = document.querySelector("#booking_CheckIn");
-
-
-    const getO = document.querySelector("#booking_CheckOut");
-    getE.addEventListener("change", (event) => {
-        var enteredDate = new Date(event.target.value);
-        enteredDate.setDate(enteredDate.getDate() + 1);
-        var minx = formatDate(enteredDate)
-        document.getElementById('booking_CheckOut').setAttribute('min', minx);
-        document.getElementById('booking_CheckOut').value = minx;
-        var Cin = new Date(document.getElementById('booking_CheckIn').value);
-        var Cout = new Date(document.getElementById('booking_CheckOut').value);
-        //var total = (Cout - Cin) / 86400000 *;
-        //document.getElementById('Booking_Total').innerHTML = formatNumber(total);
-
-    })
-    getO.addEventListener("change", (event) => {;
-        var Cin = new Date(document.getElementById('booking_CheckIn').value);
-        var Cout = new Date(document.getElementById('booking_CheckOut').value);
-        //var total = (Cout - Cin) / 86400000 *;
-        //document.getElementById('Booking_Total').innerHTML = formatNumber(total);
-    })
 </script>

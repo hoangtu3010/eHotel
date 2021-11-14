@@ -10,7 +10,11 @@ namespace eHotel.Models
     {
         public SystemDbContext() : base("eHotel") { }
 
+        public DbSet<Roles> Roles { get; set; }
+
         public DbSet<Admin> Admins { get; set; }
+
+        public DbSet<UserRoleMapping> UserRoleMappings { get; set; }
 
         public DbSet<User> Users { get; set; }
 

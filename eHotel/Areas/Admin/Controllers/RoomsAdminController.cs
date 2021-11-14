@@ -12,6 +12,7 @@ using PagedList;
 
 namespace eHotel.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Moderator")]
     public class RoomsAdminController : Controller
     {
         private SystemDbContext db = new SystemDbContext();

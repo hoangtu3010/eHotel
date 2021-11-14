@@ -51,9 +51,10 @@ namespace eHotel.Areas.User.Controllers
                     string currentName = User.Identity.Name;
                     var userId = db.Users.Where(x => x.Email == currentName).Select(x => x.Id).FirstOrDefault();
                     var room = db.Rooms.Find(multi.booking.RoomId);
-                    var days = ((int)(multi.booking.CheckOut - multi.booking.CheckIn).TotalDays) ;
+                    var days = ((int)(multi.booking.CheckOut.Value - multi.booking.CheckIn).TotalDays) ;
 
                     multi.booking.Total = days*room.Price;
+                    multi.booking.Status = (Booking.StatusOption)2;
 
                     db.Bookings.Add(multi.booking);
                     db.SaveChanges();

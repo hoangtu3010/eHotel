@@ -69,8 +69,19 @@ namespace eHotel.Areas.Admin.Controllers
             {
                 login.Password = GetMD5(login.Password);
                 var data = db.Admins.Where(s => s.Email.Equals(login.Email) && s.Password.Equals(login.Password)).FirstOrDefault();
+
                 if (data != null)
                 {
+                    var role = db.UserRoleMappings.Where(x => x.AdminId == data.Id).FirstOrDefault();
+
+                    var roleName = role.Roles.RoleName;
+
+                    if(roleName == "Staff")
+                    {
+                        FormsAuthentication.SetAuthCookie(data.UserName, true);
+                        return Redirect("~/Home");
+                    }
+
                     FormsAuthentication.SetAuthCookie(data.UserName, true);
                     return Redirect("~/Admin/Dashboard");
                 }

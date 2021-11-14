@@ -46,7 +46,7 @@
                     Total
                 </th>
                 <th>
-                    PaymentType
+                    Status
                 </th>
                 <th width="20%" colspan="3" class="text-center">Action</th>
             </tr>
@@ -80,7 +80,7 @@
                     @Html.DisplayFor(modelItem => item.Total)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PaymentType)
+                    @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td class="text-center">
                     <a href="@Url.Action("Edit", new { id = item.Id })" class="button-action btn-edit">

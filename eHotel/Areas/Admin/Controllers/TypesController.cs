@@ -10,6 +10,7 @@ using eHotel.Models;
 
 namespace eHotel.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Moderator")]
     public class TypesController : Controller
     {
         private SystemDbContext db = new SystemDbContext();
